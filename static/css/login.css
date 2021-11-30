@@ -1,0 +1,59 @@
+*{
+    background-color: linear-gradient(90.17deg, #FFFFFF 0.14%, rgba(177, 217, 240, 0) 103.66%);
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    
+}
+.login{
+    border: 2px solid #5A5858;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.logo{
+    display: block;
+    margin-left: auto; 
+    margin-right: auto;
+}
+
+#login{
+    position: relative;
+    top: -130px;
+    font-size: 48px;
+    text-align: center;
+}
+
+#login_and_pw{
+    position: relative; 
+    top: -170px;
+    width: 631px;
+    height: 397px;
+    font-size: 20px;
+    margin: auto;
+    text-align: center;
+    
+}
+
+.login_button{
+    width: 200px;
+    height: 50px;
+    background-color:rgb(192, 211, 229);
+}
+
+.login_text{
+    font-size: 15px;
+
+}
+
+.field_set{
+    border-color: black;
+    border-style: solid;
+    
+}
+
+.input{
+    width: 300px;
+    height:30px;
+    
+}
+
+
+

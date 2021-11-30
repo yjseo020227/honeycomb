@@ -1,0 +1,39 @@
+*{
+    box-sizing: border-box;
+    margin:0;
+    padding:0;
+    
+}
+#navigate_home{
+    margin-right:auto;
+}
+#logo_pic{
+    width: 200px;
+    height: 200px;
+}
+
+header{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    border-style: dotted;
+}
+li, a{
+    color: black;
+    text-decoration: None;
+}
+.nav__links{
+    list-style:none;
+}
+
+.nav__links li{
+    color:black;
+    display: inline-block;
+    font-size: 25px;
+    border-style: dotted;
+    padding: 0px 30px;
+}
+
+.nav__links li a:hover{
+    color:rgb(193, 226, 226);
+}

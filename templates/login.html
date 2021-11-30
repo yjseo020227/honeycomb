@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel = 'stylesheet' href = 'static/css/style.css'>
+</head>
+
+<body>
+    <header> 
+    <div id="logo">
+        <img src = 'static/logos/logo_main.png' alt = 'Logo'  width = 462 height = 462 class = logo>
+    </div>
+    </header>
+
+    
+
+    <main> 
+    <div id = "login_command">
+        <p id = login> 
+            Log into your account 
+        </p>
+    </div>
+
+    <div id="login_and_pw">
+        <form> 
+            <fieldset class = field_set>
+               
+                <label class = 'login_text'>
+                    Email: 
+                    <br/>
+                    <input type = 'text' name = 'email' id = 'email' class = input pattern = '[a-z0-9]+@.[a-z]+.com'required >
+                    <br/>
+                </label>
+
+                <label class = 'login_text'>
+                    Password: <br/>
+                    <input type = 'password' name = 'password' class = input required>
+                    <br/>
+                    <br/>
+                </label>
+
+                <input type = 'submit' class = 'login_button' value = 'Login'>  
+            </fieldset>
+
+            
+        </form>
+    </div></main>
+</body>
+</html>

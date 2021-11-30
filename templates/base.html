@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel = "stylesheet" href="{% static 'css/base.css' %}">
+    
+    {% block styles %}
+    {% endblock styles %} 
+
+    <script>
+
+    </script>
+    {% block script %}
+    {% endblock script %} 
+</head>
+<body>
+    <header>
+        <a href = "{% url 'dashboard' %}" id = "navigate_home">
+            <img src = "{% static 'logos/logo_main.png' %}" alt = "logo" id = "logo_pic">
+        </a>
+
+        <nav>
+            <ul class = "nav__links">
+                <li><a href = "{% url 'dashboard' %}">Dashboard</a></li>
+                <li><a href = "{% url 'payments' %}">Payments</a></li>
+                <li><a href = "{% url 'cashflow' %}">Cashflow</a></li>
+                <li><a href = "{% url 'upload_data' %}">Upload Data</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <button> Click Here </button>
+
+    {% block content %}
+    {% endblock %}
+
+    {% block footer %} 
+    {% endblock %}
+</body>
+</html>
