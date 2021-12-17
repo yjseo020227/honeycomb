@@ -9,9 +9,6 @@ urlpatterns = [
     path('payments/',payments, name = 'payments'),
     path('upload_data/',upload_data, name = 'upload_data'),
 
-    path("register/", register_request, name="register"),
-    path("login/", login_request, name="login"),
-    path("logout", logout_request, name= "logout"),
 
     re_path(r'^api/data/$', get_data, name = 'get_data' ),
     ]
