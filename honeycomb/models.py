@@ -20,7 +20,6 @@ class User(AbstractUser):
     class Types(models.TextChoices):
         LANDLORD = 'LANDLORD' , "Landlord"
         TENANT = 'TENANT' , "Tenant"
-        
     type = models.CharField(_('Type'), max_length = 50 ,choices = Types.choices, default = Types.LANDLORD) # this itself is a field object
     name = models.CharField(_("Name of user"), blank = True, max_length = 255)
     
