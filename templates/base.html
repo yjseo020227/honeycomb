@@ -27,8 +27,7 @@
             <ul class = "nav__links">
                 <li><a href = "{% url 'dashboard' %}">Dashboard</a></li>
                 <li><a href = "{% url 'payments' %}">Payments</a></li>
-                <li><a href = "{% url 'cashflow' %}">Cashflow</a></li>
-                <li><a href = "{% url 'upload_data' %}">Upload Data</a></li>
+                <li><a href = "{% url 'properties_main' %}">Properties</a></li>
 
                 {% if user.is_authenticated %}
                 <li> <a href="{% url 'logout' %}"> Logout </a> </li>

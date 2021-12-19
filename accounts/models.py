@@ -1,9 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser, BaseUserManager, UserManager
 from django.db import models
-from django.db.models.deletion import CASCADE
+from django.db.models.deletion import CASCADE,SET_NULL
 from django.db.models.fields import DateField
-from django.utils.translation import gettext_lazy as _ 
+from django.utils.translation import gettext_lazy as _
+
 
 # Create your models here.
 
@@ -24,6 +25,8 @@ class User(AbstractUser):
         TENANT = 'TENANT' , "Tenant"
     type = models.CharField(_('Type'), max_length = 50 ,choices = Types.choices, default = Types.LANDLORD) # this itself is a field object
     name = models.CharField(_("Name of user"), blank = True, max_length = 255)
+    related_commerical_properties = models.ForeignKey('properties.SingleCommericalUnit' , null = True , on_delete = SET_NULL)
+    related_residential_properties = models.ForeignKey('properties.SingleResidentialUnit' , null = True , on_delete = SET_NULL)
     
 class LandlordManager(BaseUserManager): 
     def get_queryset(self, *args, **kwargs): 

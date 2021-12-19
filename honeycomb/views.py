@@ -5,6 +5,8 @@ from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
 
 from .models import * 
+from properties.models import Property
+from accounts.models import Landlord
 
 
 # 1. Standard library imports.from math import sqrt and from os.path import abspath

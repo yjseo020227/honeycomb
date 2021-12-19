@@ -34,6 +34,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'honeycomb.apps.HoneycombConfig',
     'accounts.apps.AccountsConfig',
+    'properties.apps.PropertiesConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
