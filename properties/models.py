@@ -9,12 +9,11 @@ class Property(models.Model):
         RESIDENTIAL = 'R', _('Residential')
         COMMERCIAL = 'C', _('Commerical')
     
-    class Meta: 
-        abstract = True
     landlord = models.ForeignKey('accounts.Landlord',on_delete=models.CASCADE , null = True)
+    note = models.CharField(max_length = 100, default = "None")
     address = models.CharField(max_length = 500)
     name = models.CharField(max_length = 500)
-    photos = models.ImageField()
+    photos = models.ImageField(null = True)
     property_type = models.CharField(max_length = 1, choices = PropertyType.choices , default = PropertyType.RESIDENTIAL )
     
     
@@ -48,3 +47,7 @@ class SingleCommericalUnit(models.Model):
     floor = models.IntegerField()
     business_type = models.CharField(max_length = 30)
     monthly_rental = models.FloatField()
+    name = models.CharField(max_length = 50)
+
+    def __str__(self): 
+        return self.name

@@ -5,8 +5,9 @@ from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
 
 from .models import * 
-from properties.models import Property
+from properties.models import Property,Residential,Commerical
 from accounts.models import Landlord
+from itertools import chain
 
 
 # 1. Standard library imports.from math import sqrt and from os.path import abspath
@@ -17,12 +18,15 @@ from accounts.models import Landlord
 
 def dashboard(request):
     if request.method == 'GET':
-        landlords_list = Landlord.objects.all()
+        user = request.user
+        username = user.username
+        
         #property_list = Property.objects.all()
-        name_to_filter = "yjseo0227"
-        property_list = Property.objects.filter(landlord__username = name_to_filter)
+        residential_property_list = Residential.objects.filter(landlord__username = username)
+        commerical_property_list = Commerical.objects.filter(landlord__username = username)
+        property_list = list(chain(commerical_property_list, residential_property_list))
         # you can pass a queryset into the context but you can't return this as a response.
-        return render(request,'dashboard.html', {'properties': property_list , 'landlords':landlords_list })
+        return render(request,'dashboard.html', {'properties': property_list})
 
 def get_data(request):
     user = request.GET.get('user',None)
