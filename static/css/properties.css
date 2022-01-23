@@ -1,7 +1,8 @@
 .propTitle{
-    color:aqua;
+    color:black;
 }
 .property_img{
+    display: inline;
     width: 500px;
     height: auto;
 }

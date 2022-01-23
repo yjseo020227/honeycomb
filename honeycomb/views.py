@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
 
 from .models import * 
-from properties.models import Property,Residential,Commerical
+from properties.models import Property,SingleRentalUnit
 from accounts.models import Landlord
 from itertools import chain
 
@@ -22,9 +22,8 @@ def dashboard(request):
         username = user.username
         
         #property_list = Property.objects.all()
-        residential_property_list = Residential.objects.filter(landlord__username = username)
-        commerical_property_list = Commerical.objects.filter(landlord__username = username)
-        property_list = list(chain(commerical_property_list, residential_property_list))
+        property_list = Property.objects.filter(landlord__username = username)
+        property_list_final = list(property_list)
         # you can pass a queryset into the context but you can't return this as a response.
         return render(request,'dashboard.html', {'properties': property_list})
 

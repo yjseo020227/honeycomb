@@ -27,7 +27,7 @@ def register_request(request):
             user = form.save()
             login(request, user)
             messages.success(request, "Registration successful." )
-            return redirect(dashboard)
+            return redirect(honeycombviews.dashboard)
         print('form is not valid')
         print(form.errors)
         #form.non_field_errors()
