@@ -5,7 +5,7 @@ from django.core import serializers
 from django.http import JsonResponse
 
 from .forms import PropertyForm, SingleUnitForm
-from .models import Property
+from .models import Property, SingleRentalUnit
 from accounts.models import Landlord
 
 # Create your views here.
@@ -15,7 +15,6 @@ def load_properties(request):
 
         #POST request
         if request.method == 'POST':
-            print('request is post')
             # add property
             if 'add_property' in request.POST:
                 form = PropertyForm(request.POST, request.FILES)
@@ -29,11 +28,9 @@ def load_properties(request):
                     request.session['property'] = property_instance.id
                     context = {'single_unit_form': single_unit_form, 'rentals': number_of_rentals}
                     return render(request, 'single_rental.html', context)
-                    #return redirect(load_properties)
                 else: 
                     print('form is not valid')
                     print(form.errors)
-                    #form.non_field_errors()
                     messages.error(request, "Unsuccessful registration. Invalid information.")
             # add single rental unit
             """elif 'add_single_unit' in request.POST: 
@@ -57,6 +54,7 @@ def load_properties(request):
             single_unit_form = SingleUnitForm()
             context = {'property_form' : property_form, 'properties' : properties, 'single_unit_form': single_unit_form}
             return render(request, 'properties.html',context)
+
 def addProperties(request):
     pass
 
@@ -64,13 +62,23 @@ def addRental(request):
     if request.method == 'POST' and request.is_ajax: 
         form = SingleUnitForm(request.POST)
         if form.is_valid():
+            # save the individual unit object to the db 
             single_rental_instance = form.save(commit = False) 
             property_id = request.session['property']
             property = Property.objects.get(id = property_id)
             single_rental_instance.property = property
             single_rental_instance.save()
             ser_instance = serializers.serialize("json", [single_rental_instance,])
-            return JsonResponse({"instance": ser_instance}, status=200)
+
+            #figure out how many individual properties are left to add
+            total_single_rentals = property.number_of_rentals 
+            registered_single_rentals = SingleRentalUnit.objects.filter(property = property).count()
+            left_to_register = str(total_single_rentals - registered_single_rentals)
+            add_more = True
+            if left_to_register == '0': 
+                add_more = False
+            
+            return JsonResponse({"instance": ser_instance, "add_more":add_more , "left_to_register": left_to_register }, status=200)
         else: 
             return JsonResponse({"error": form.errors }, status = 400)
     #some other error

@@ -6,9 +6,9 @@ var $skip = $j(".skip");
 var $skip_all = $j(".skip-all");
 
 $j("#singleunit-form").on('submit', function(event){
-    console.log("single unit added")
     event.preventDefault();
     url = $j("form").attr("data-url")
+    url_redirect = $j("form").attr("data-url-redirect")
     var serializedData = $j(this).serialize();
     $j.ajax({
         type:'POST',
@@ -16,8 +16,20 @@ $j("#singleunit-form").on('submit', function(event){
         data: serializedData, 
 
         success: function(response){
-            console.log("it is a success!")
-            $j("#singleunit-form").trigger('reset')
+            console.log(response)
+            //response_instance = JSON.parse(response)
+            //if the json is True, do the reset because this means more needs to be done
+            if (response["add_more"] == true){
+                console.log('need to add more')
+                $j("#singleunit-form").trigger('reset');
+                number = response['left_to_register']
+                $j("b").html(number)
+            }
+            else{
+                // show done 
+                window.location.href = url_redirect;
+            }
+            
         },
         error: function(response){
             alert(response["responseJson"]["error"])
